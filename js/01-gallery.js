@@ -25,7 +25,7 @@ const galleryItemsMarkup = (arr) =>
     )
         .join('');
 
-console.log(galleryItemsMarkup(galleryItems));
+// console.log(galleryItemsMarkup(galleryItems));
 
 const listClickHandler = (e) => {
     // console.log(e);

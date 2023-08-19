@@ -16,7 +16,6 @@ const galleryItemsMarkup = (arr) =>
                 <img 
                     class="gallery__image"
                     src="${preview}"
-                    data-source="${original}"
                     alt="${description}"
                 />
             </a>
@@ -24,31 +23,14 @@ const galleryItemsMarkup = (arr) =>
     )
         .join('');
 
-console.log(galleryItemsMarkup(galleryItems));
-
-const listClickHandler = (e) => {
-    // console.log(e);
-    e.preventDefault();
-    if (e.currentTarget === e.target) {
-        return;
-    }
-    const modalInstance = basicLightbox.create
-        (`<img src="${e.target.dataset.source}">`);
-
-    modalInstance.show();
-
-    //Close by press Esc key
-    window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            modalInstance.close();  
-        }
-    });
-};
-
-
-
-
-
+// console.log(galleryItemsMarkup(galleryItems));
 
 galleryListEl.insertAdjacentHTML('beforeend',galleryItemsMarkup(galleryItems));
-galleryListEl.addEventListener('click', listClickHandler);
+// galleryListEl.addEventListener('click', listClickHandler);
+
+var lightbox = new SimpleLightbox('.gallery a',
+    {
+        captionsData: 'alt',
+        captionDelay: 250, 
+    }
+);
