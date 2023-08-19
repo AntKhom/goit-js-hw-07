@@ -27,6 +27,30 @@ const galleryItemsMarkup = (arr) =>
 
 console.log(galleryItemsMarkup(galleryItems));
 
-galleryListEl.insertAdjacentHTML('beforeend',galleryItemsMarkup(galleryItems));
+const listClickHandler = (e) => {
+    // console.log(e);
+    e.preventDefault();
+    if (e.currentTarget === e.target) {
+        return;
+    }
+    const modalInstance = basicLightbox.create
+        (`<img src="${e.target.dataset.source}">`);
 
+    modalInstance.show();
+
+    //Close by press Esc key
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            modalInstance.close();  
+        }
+    });
+};
+
+
+
+
+
+
+galleryListEl.insertAdjacentHTML('beforeend',galleryItemsMarkup(galleryItems));
+galleryListEl.addEventListener('click', listClickHandler);
 
