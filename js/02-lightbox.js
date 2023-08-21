@@ -28,7 +28,7 @@ const galleryItemsMarkup = (arr) =>
 galleryListEl.insertAdjacentHTML('beforeend',galleryItemsMarkup(galleryItems));
 // galleryListEl.addEventListener('click', listClickHandler);
 
-var lightbox = new SimpleLightbox('.gallery a',
+const lightbox = new SimpleLightbox('.gallery a',
     {
         captionsData: 'alt',
         captionDelay: 250, 

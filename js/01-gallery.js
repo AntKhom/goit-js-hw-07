@@ -26,28 +26,30 @@ const galleryItemsMarkup = (arr) =>
         .join('');
 
 // console.log(galleryItemsMarkup(galleryItems));
+        
 
 const listClickHandler = (e) => {
     // console.log(e);
     e.preventDefault();
-    if (e.currentTarget === e.target) {
-        return;
-    }
+    if (e.currentTarget === e.target) return;
+    if (e.target.nodeName !== 'IMG') return;
+
+    //close modal by Esc
+    const closeModalByEsc = (e) => {
+        if (e.key === 'Escape') {
+            modalInstance.close();
+        }
+    };
+
     const modalInstance = basicLightbox.create
-        (`<img src="${e.target.dataset.source}">`);
+        (`<img src="${e.target.dataset.source}">`, {
+        onShow: (modalInstance) => window.addEventListener('keydown', closeModalByEsc),
+		onClose: (modalInstance) => window.removeEventListener('keydown', closeModalByEsc),
+        });
 
     modalInstance.show();
 
-    //Close by press Esc key
-    window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            modalInstance.close();  
-        }
-    });
 };
-
-
-
 
 
 
